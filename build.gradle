@@ -10,10 +10,16 @@ sourceCompatibility = 1.8
 
 repositories {
     maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+
+    maven {
         url 'http://nexus-dev.wanzhoumo.com/nexus/content/groups/public/'
     }
 
-    mavenCentral()
+    maven {
+        url 'https://repository-master.mulesoft.org/nexus/content/groups/public/'
+    }
 }
 
 dependencies {

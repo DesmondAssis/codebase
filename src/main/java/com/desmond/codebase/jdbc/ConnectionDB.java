@@ -3,13 +3,7 @@ package com.desmond.codebase.jdbc;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -25,7 +19,7 @@ public class ConnectionDB {
      */
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
-    private static final String FILE_NAME = "/Users/gk/java/profile/jdbc-local.properties";
+    private static final String FILE_NAME = "/Users/presleyli/java/profile/jdbc-local.properties";
     private static final String WANZHOUMO_URL = "wanzhoumo.url";
     private static final String WANZHOUMO_UNAME = "wanzhoumo.username";
     private static final String WANZHOUMO_PWD = "wanzhoumo.password";
@@ -34,9 +28,9 @@ public class ConnectionDB {
     private static final String DATACENTER_UNAME = "datacenter.username";
     private static final String DATACENTER_PWD = "datacenter.password";
 
-    private static final String T_URL = "t.url";
-    private static final String T_UNAME = "t.username";
-    private static final String T_PWD = "t.password";
+    private static final String T_URL = "test.url";
+    private static final String T_UNAME = "test.username";
+    private static final String T_PWD = "test.password";
 
     /**
      * 连接字符串
@@ -96,8 +90,8 @@ public class ConnectionDB {
             DCPwd = properties.getProperty(DATACENTER_PWD);
 
             TESTJdbcUrl = properties.getProperty(T_URL);
-            TESTUsername = properties.getProperty(DATACENTER_UNAME);
-            TESTPwd = properties.getProperty(DATACENTER_PWD);
+            TESTUsername = properties.getProperty(T_UNAME);
+            TESTPwd = properties.getProperty(T_PWD);
 
         } catch (ClassNotFoundException e) {
             System.out.println("加载驱动错误");
@@ -168,7 +162,7 @@ public class ConnectionDB {
             // 获得连接
             connnection = this.getConnection(dataBaseEnum);
             // 调用SQL
-            preparedStatement = connnection.prepareStatement(sql);
+            preparedStatement = connnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             // 参数赋值
             if (params != null) {
@@ -179,6 +173,13 @@ public class ConnectionDB {
 
             // 执行
             affectedLine = preparedStatement.executeUpdate();
+
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if(rs != null) {
+                while (rs.next()) {
+                    affectedLine = rs.getInt(1); /*返回主键增长信息*/
+                }
+            }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -25,3 +25,6 @@ hs_err_pid*
 gradle-wrapper.properties
 src/main/java/com/desmond/codebase/licenses
 src/main/java/com/desmond/codebase/security/SignUtilTest.java
+codebase.iml
+codebase.ipr
+codebase.iws
