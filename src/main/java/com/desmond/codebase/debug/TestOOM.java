@@ -1,5 +1,9 @@
 package com.desmond.codebase.debug;
 
+import org.apache.hadoop.yarn.util.ApplicationClassLoader;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -14,8 +18,8 @@ public class TestOOM {
 
     public static void main(String[] args) {
         Vector v = new Vector();
-        for(int i =0 ; i < 25; i++) {
-            v.add(new byte[1024*1024*1024]);
+        for(int i =0 ; i < 1; i++) {
+            v.add(new byte[10*1024*1024]);
         }
     }
 }

@@ -32,12 +32,14 @@ public class AppRecordsGenerator {
     }
 
     private void insertDatas() {
+        DataBaseEnum dataBaseEnum = DataBaseEnum.DATA_CENER;
+
         final String recordSql = getRecordSql();
         recordMap.forEach((key,record) -> {
             // ('page', 'ActDetailActivity', '活动详情页(p)')
             String type = Integer.valueOf(1).equals(record.getType())? "event" : "page";
             String desc = record.getDesc() + "(" + (Integer.valueOf(1).equals(record.getType())?"e":"p")+")";
-            int id = connectionDB.executeUpdate(DataBaseEnum.DATA_CENER, recordSql, new Object[] {type, record.getName(), desc});
+            int id = connectionDB.executeUpdate(dataBaseEnum, recordSql, new Object[] {type, record.getName(), desc});
 
             record.setId(id);
         });
@@ -52,7 +54,7 @@ public class AppRecordsGenerator {
             int type = path.getType() - 1;
             String category = getPathCategory(path.getPosition());
             String name = path.getName();
-            int id = connectionDB.executeUpdate(DataBaseEnum.DATA_CENER, pathSql, new Object[] {type, category, name, name, tmpList.size()});
+            int id = connectionDB.executeUpdate(dataBaseEnum, pathSql, new Object[] {type, category, name, name, tmpList.size()});
 
             tmpList.add(1);
             path.setId(id);
@@ -71,7 +73,7 @@ public class AppRecordsGenerator {
             for(String recordName : recordList) {
                 Record record = recordMap.get(recordName);
                 int recordId = record.getId();
-                int id = connectionDB.executeUpdate(DataBaseEnum.DATA_CENER, refSql, new Object[] {platform, pathId, recordId, sort});
+                int id = connectionDB.executeUpdate(dataBaseEnum, refSql, new Object[] {platform, pathId, recordId, sort});
                 sort ++;
             }
         });
@@ -90,6 +92,8 @@ public class AppRecordsGenerator {
             case 2: return "发现";
             case 3 : return "消息";
             case 4: return "我的";
+            case 6: return "主页面";
+            case 7: return "列表、详情页";
             default: return "其他";
         }
     }

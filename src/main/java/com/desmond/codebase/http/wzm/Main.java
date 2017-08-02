@@ -22,11 +22,13 @@ public class Main {
     private static Logger LOGGER = LoggerFactory.getLogger(HelloWorld.class);
 
     public static void main(String[] args) {
+
         String url = "http://127.0.0.1:8080/system/record2";
         String content = "[{\"visit_time\":12345678,\"leave_time\":12345578,\"visit_type\":\"page\",\"visit_page\":\"page1\"},{\"visit_time\":12345678,\"leave_time\":12345578,\"visit_type\":\"page\",\"visit_page\":\"page2\"},{\"visit_time\":12345678,\"leave_time\":12345578,\"visit_type\":\"page\",\"visit_page\":\"page3\"}]";
 
         sendHttp(url, content);
     }
+
 
     public static void sendHttp(String url, String message) {
         HttpClient httpClient = new HttpClient();

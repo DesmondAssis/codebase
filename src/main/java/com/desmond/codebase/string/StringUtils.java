@@ -1,6 +1,7 @@
 package com.desmond.codebase.string;
 
 
+import com.desmond.codebase.number.NumberUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -64,8 +65,20 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils{
     }
 
     public static void main(String[] args) {
-        print(toUpperFirstChar("asdTest"));
-        print(toUpperFirstChar("asd_test"));
+        String[] s = {",0,",",10898,",",10896,0,",",10898,10896,10894,0,"};
+        for(String t : s) {
+            String[] arr = t.split(",");
+            if(arr != null && arr.length > 0) {
+                for(String a : arr) {
+                    int i = NumberUtil.toInt(a, -1);
+                    if(i > -1) {
+                        System.out.print(i + " ");
+                    }
+                }
+            }
+
+            System.out.println();
+        }
     }
 
     public static void generateMethod1() {

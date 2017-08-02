@@ -96,14 +96,15 @@ public class FileUtils {
     }
 
     public static void main(String[] args) throws IOException {
-        List<String> l = FileUtils.getContentByLine("/Users/gk/Downloads/tech/sqls/m_visit_page");
+        List<String> l = FileUtils.getContentByLine("/Users/presleyli/tmp/project_ids");
         StringBuilder s = new StringBuilder();
+
         l.stream()
                 .filter(data -> StringUtils.isNotBlank(data))
 
                 .forEach(str -> {
                     System.out.println();
-                    s.append(str).append("&");
+                    s.append(str).append(",");
                 });
 
         System.out.println(s.toString());
