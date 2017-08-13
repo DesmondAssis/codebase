@@ -28,7 +28,7 @@ public class Test {
         byte[] data = ProxyGenerator.generateProxyClass( name, new Class[] { SubjectIntf.class } );
         try
         {
-            String path = "/Users/presleyli/java/desmond/codebase/src/main/java/com/desmond/codebase/proxy/dynamic/";
+            String path = "/Users/gk/java/desmond/codebase/src/main/java/com/desmond/codebase/proxy/dynamic/";
             FileOutputStream out = new FileOutputStream( path + name + ".class" );
             out.write( data );
             out.close();

@@ -84,6 +84,9 @@ dependencies {
     // java mail
     compile 'javax.mail:mail:1.4'
 
+    // quartz
+    compile 'org.quartz-scheduler:quartz:2.2.1'
+
     compile 'com.google.zxing:core:3.2.1'
 
     compile 'org.springframework.data:spring-data-redis:1.5.2.RELEASE'

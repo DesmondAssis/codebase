@@ -7,6 +7,7 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.Callable;
 
 import static com.desmond.codebase.print.Print.*;
 
@@ -412,6 +413,7 @@ public class DateTimeUtils extends DateUtils{
     }
 
     public static void main(String[] args) {
-        System.out.println(getDays("2016-08-30", "2016-12-13"));
+        System.out.println(format(new Date()));
+        Callable c;
     }
 }
